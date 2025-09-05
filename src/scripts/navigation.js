@@ -1,6 +1,7 @@
 const toggleButton = document.getElementById("menu-toggle");
 const closeButton = document.getElementById("menu-close");
 const mobileMenu = document.getElementById("mobile-menu");
+const html = document.getElementsByTagName("html")[0];
 const mobileLinks = Array.from(
   document.querySelectorAll(".mobile-menu-link"),
 );
@@ -12,6 +13,7 @@ function closeMobileMenu() {
     link.setAttribute("tabindex", "-1");
   });
   closeButton.setAttribute("tabindex", "-1");
+    html.classList.remove("overflow-hidden");
   toggleButton.focus(); // Return focus to hamburger button
 }
 
@@ -22,6 +24,7 @@ toggleButton.addEventListener("click", () => {
     link.removeAttribute("tabindex");
   });
   closeButton.removeAttribute("tabindex");
+  html.classList.add("overflow-hidden");
   closeButton.focus(); // Focus close button when menu opens
 });
 

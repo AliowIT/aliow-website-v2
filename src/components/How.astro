@@ -1,0 +1,59 @@
+---
+import Section from "../components/Section.astro";
+import IconCard from "./IconCard.astro";
+
+import iconLamp from "../assets/icon-lamp.svg";
+import iconBrainGear from "../assets/icon-brain-gear.svg";
+import iconPhone from "../assets/icon-phone.svg";
+import iconGearGroup from "../assets/icon-gear-group.svg";
+
+const title = "How can we help";
+const description =
+  "We fast-track innovation by transforming business ideas into impactful, sustainable solutions that drive real change.";
+
+const cardItems = [
+  {
+    title: "Ideas delivery",
+    description:
+      "We accelerate end-to-end (E2E) idea delivery through low-code development, rapidly turning concepts into reality. Our human-centered design approach ensures solutions are not just fast—but meaningful, intuitive, and scalable.",
+    icon: iconLamp,
+    alt: "Lamp icon",
+  },
+  {
+    title: "App Modernization and Extensibility of the Core",
+    description:
+      "Unlock the full potential of your legacy and core systems (ERP, MES, CRM) with a strategic, future-ready approach. We modernise and extend your applications to ensure they are adaptable, scalable, and capable of redefining customer experiences while driving measurable business outcomes.",
+    icon: iconPhone,
+    alt: "Phone icon",
+  },
+  {
+    title: "Intelligent Transformation",
+    description:
+      "Revolutionise your IT ecosystem with a collaborative, agile approach. By integrating AI, IoT, and AR into a composable architecture, we help you optimise performance through continuous iteration, strategic reflection, and seamless data integration.",
+    icon: iconBrainGear,
+    alt: "Brain and gear icon",
+  },
+  {
+    title: "Empower Your Team",
+    description:
+      "Technology is only as powerful as the people behind it. We don’t just build solutions—we equip your team with the skills, tools, and expertise to excel in low-code development and innovation-driven growth.",
+    icon: iconGearGroup,
+    alt: "Gear and users group icon",
+  },
+];
+---
+
+<Section id="how" bgColor="white" title={title} description={description}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    {
+      cardItems.map((item) => (
+        <IconCard
+          title={item.title}
+          description={item.description}
+          icon={item.icon}
+          alt={item.alt}
+        />
+      ))
+    }
+  </div>
+</Section>
