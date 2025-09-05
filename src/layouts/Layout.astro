@@ -13,7 +13,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="font-instrument-sans text-primary">
     <Header />
     <slot />
     <script>
@@ -28,5 +28,6 @@ const { title } = Astro.props;
     margin: 0;
     width: 100%;
     height: 100%;
+    scroll-behavior: smooth;
   }
 </style>
