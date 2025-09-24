@@ -1,0 +1,60 @@
+---
+import Section from "./Section.astro";
+import IconCard from "./IconCard.astro";
+
+import iconCourage from "../assets/icon-courage.svg";
+import iconIntegrity from "../assets/icon-integrity.svg";
+import iconAuthenticity from "../assets/icon-authenticity.svg";
+import iconResilience from "../assets/icon-resilience.svg";
+
+const title = "Who we are";
+const description =
+  "Our team consists of highly qualified professionals specializing in various areas.";
+
+const cardItems = [
+  {
+    title: "Courage",
+    description:
+      "Driven by a relentless passion for technology and innovation. Our fearless pursuit of excellence drive us to achieve extraordinary outcomes.",
+    icon: iconCourage,
+    alt: "Courage icon",
+  },
+  {
+    title: "Integrity",
+    description:
+      "Upholding the highest standards of integrity, fostering trust and transparency in all our relationships and endeavors.",
+    icon: iconIntegrity,
+    alt: "Integrity icon",
+  },
+  {
+    title: "Authenticity",
+    description:
+      "Committed to being original, creative and genuine in all our endeavors.",
+    icon: iconAuthenticity,
+    alt: "Authenticity icon",
+  },
+  {
+    title: "Resilience",
+    description:
+      "Embracing challenges with a resilient mindset, constantly adapting, learning and growing from each experience to continuously improve.",
+    icon: iconResilience,
+    alt: "Resilience icon",
+  },
+];
+---
+
+<Section id="who" bgColor="white" title={title} description={description}>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    {
+      cardItems.map((item) => (
+        <IconCard
+          title={item.title}
+          description={item.description}
+          icon={item.icon}
+          alt={item.alt}
+          height={150}
+        />
+      ))
+    }
+  </div>
+</Section>
