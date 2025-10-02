@@ -1,0 +1,111 @@
+---
+import Section from "./Section.astro";
+import ButtonLink from "./ButtonLink.astro";
+import iconMail from "../assets/icon-contact-mail.svg";
+import iconPhone from "../assets/icon-contact-phone.svg";
+
+import { Image } from "astro:assets";
+
+const title = "Get in touch";
+const description =
+  "Are you looking for a partner or interested in knowing more? Send us a message.";
+---
+
+<Section id="contact" bgColor="primary" title={title} description={description}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <form
+      method="POST"
+      action="/api/contact"
+      class="flex flex-col gap-12 md:order-1 p-6 bg-white/3 border border-white/4 rounded"
+    >
+      <div class="flex flex-col gap-2">
+        <label for="name" class="font-semibold">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          autocomplete="name"
+          class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="email" class="font-semibold">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+          class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
+        />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="message" class="font-semibold">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
+        ></textarea>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          class="w-fit px-4 py-2 bg-secondary text-primary rounded font-semibold cursor-pointer select-none
+         hover:bg-secondary-400 active:scale-95 active:bg-secondary-500 transition transform disabled"
+          style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;"
+          ontouchstart="">Send message</button
+        >
+      </div>
+    </form>
+    <div class="flex flex-col gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div
+          class="flex flex-col gap-3 p-6 bg-white/3 border border-white/4 rounded h-fit"
+        >
+          <p class="font-semibold">Phone</p>
+          <div class="flex gap-3">
+            <a
+              href="tel:937912271"
+              class="w-fit border-b py-1 hover:text-secondary transition"
+              >+351 937 912 271</a
+            >
+          </div>
+        </div>
+        <div
+          class="flex flex-col gap-3 p-6 bg-white/3 border border-white/4 rounded h-fit"
+        >
+          <p class="font-semibold">Email</p>
+
+          <div class="flex gap-3">
+            <a
+              href="mailto:info@aliow.it"
+              class="w-fit border-b py-1 hover:text-secondary transition"
+              >info@aliow.it</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="p-6 bg-white/3 border border-white/4 rounded">
+        <div class="flex flex-col gap-6">
+          <p class="font-semibold">Address</p>
+          <div>
+            <p class="">Rua de São Sebastião da Pedreira 55 1D</p>
+            <p class="">1050-206 Lisboa</p>
+          </div>
+          <a
+            href="https://www.google.com/maps?q=1600+Amphitheatre+Parkway,+Mountain+View,+CA"
+            target="_blank"
+            class="w-fit border-b py-1 hover:text-secondary transition"
+          >
+            Open in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>
