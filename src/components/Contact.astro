@@ -1,23 +1,37 @@
 ---
-import Section from "./Section.astro";
-import ButtonLink from "./ButtonLink.astro";
-import iconMail from "../assets/icon-contact-mail.svg";
-import iconPhone from "../assets/icon-contact-phone.svg";
-
 import { Image } from "astro:assets";
-
+import Section from "./Section.astro";
+import spinner from "../assets/infinite-spinner.svg";
 const title = "Get in touch";
 const description =
-  "Are you looking for a partner or interested in knowing more? Send us a message.";
+  "Are you looking for a partner or interested in knowing more? Contact us by sending a message or through the alternative contacts.";
 ---
 
 <Section id="contact" bgColor="primary" title={title} description={description}>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
     <form
+      action="https://api.web3forms.com/submit"
       method="POST"
-      action="/api/contact"
-      class="flex flex-col gap-12 md:order-1 p-6 bg-white/3 border border-white/4 rounded"
+      id="form"
+      class="needs-validation flex flex-col gap-12 md:order-1 p-6 bg-white/3 border border-white/4 rounded"
+      data-astro-reload
+      novalidate
     >
+      <!-- web3forms access key -->
+      <input type="hidden" name="access_key" value="123a5313-ed0e-43a5-bde2-7e17c7ad3cb3" />
+
+      <input type="hidden" name="subject" value="Contact Form Request" />
+      <input type="hidden" name="from_name" value="Aliow" />
+
+      <!-- Honeypot spam protection -->
+      <input
+        type="checkbox"
+        class="hidden"
+        style="display:none"
+        name="botcheck"
+      />
+
+      <!-- Name input -->
       <div class="flex flex-col gap-2">
         <label for="name" class="font-semibold">Name</label>
         <input
@@ -28,40 +42,65 @@ const description =
           autocomplete="name"
           class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
         />
+        <div class="empty-feedback invalid-feedback text-red-400 text-sm">
+          Please provide your name.
+        </div>
       </div>
+
+      <!-- Email input -->
       <div class="flex flex-col gap-2">
-        <label for="email" class="font-semibold">Email</label>
+        <label for="email" class="font-semibold">Email address</label>
         <input
-          type="email"
           id="email"
+          type="email"
+          placeholder=""
           name="email"
           required
-          autocomplete="email"
           class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
         />
+        <div class="empty-feedback text-red-400 text-sm">
+          Please provide your email address.
+        </div>
+        <div class="invalid-feedback text-red-400 text-sm">
+          Please provide a valid email address.
+        </div>
       </div>
 
-      <div class="flex flex-col gap-2">
-        <label for="message" class="font-semibold">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          rows="5"
-          required
-          class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
-        ></textarea>
-      </div>
-
+      <!-- Message input -->
       <div>
+        <div class="flex flex-col gap-2">
+          <label for="message" class="font-semibold">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
+          ></textarea>
+          <div class="empty-feedback invalid-feedback text-red-400 text-sm">
+            Please enter your message.
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
         <button
+          id="submit"
           type="submit"
-          class="w-fit px-4 py-2 bg-secondary text-primary rounded font-semibold cursor-pointer select-none
-         hover:bg-secondary-400 active:scale-95 active:bg-secondary-500 transition transform disabled"
+          class="text-nowrap w-fit px-4 py-2 bg-secondary text-primary rounded font-semibold cursor-pointer select-none
+         hover:bg-secondary-400 active:scale-95 active:bg-secondary-500 transition transform disabled:cursor-not-allowed disabled:hover:bg-secondary-500 disabled:bg-secondary-500 disabled:cursor-not-allowed disabled:active:scale-100"
           style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;"
-          ontouchstart="">Send message</button
+          ontouchstart=""
         >
+          <span class="flex gap-2"><Image src={spinner} width={30} id="spinner" class="hidden" alt="Spinner indicator" />Send message</span>
+        </button>
+
+        <!-- Feedback message -->
+        <div id="result"></div>
       </div>
     </form>
+
     <div class="flex flex-col gap-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div
@@ -109,3 +148,84 @@ const description =
     </div>
   </div>
 </Section>
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      const form = document.getElementById("form");
+      const result = document.getElementById("result");
+      const button = document.getElementById("submit");
+      const spinner = document.getElementById("spinner");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.classList.add("was-validated");
+        if (!form.checkValidity()) {
+          form.querySelectorAll(":invalid")[0].focus();
+          return;
+        }
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        button.disabled = true;
+        spinner.classList.remove("hidden");
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        })
+          .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+              result.classList.add("text-green-500");
+              result.innerHTML = json.message;
+            } else {
+              console.log(response);
+              result.classList.add("text-red-500");
+              result.innerHTML = json.message;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            result.classList.add("text-red-500");
+            result.innerHTML = "Something went wrong, please try again.";
+          })
+          .then(function () {
+            button.disabled = false;
+            spinner.classList.add("hidden")
+            form.reset();
+            form.classList.remove("was-validated");
+            setTimeout(() => {
+              result.style.display = "none";
+            }, 5000);
+          });
+      });
+    },
+    { once: true },
+  );
+</script>
