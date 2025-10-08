@@ -18,7 +18,11 @@ const description =
       novalidate
     >
       <!-- web3forms access key -->
-      <input type="hidden" name="access_key" value="123a5313-ed0e-43a5-bde2-7e17c7ad3cb3" />
+      <input
+        type="hidden"
+        name="access_key"
+        value="123a5313-ed0e-43a5-bde2-7e17c7ad3cb3"
+      />
 
       <input type="hidden" name="subject" value="Contact Form Request" />
       <input type="hidden" name="from_name" value="Aliow" />
@@ -93,7 +97,15 @@ const description =
           style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;"
           ontouchstart=""
         >
-          <span class="flex gap-2"><Image src={spinner} width={30} id="spinner" class="hidden" alt="Spinner indicator" />Send message</span>
+          <span class="flex gap-2"
+            ><Image
+              src={spinner}
+              width={30}
+              id="spinner"
+              class="hidden"
+              alt="Spinner indicator"
+            />Send message</span
+          >
         </button>
 
         <!-- Feedback message -->
@@ -103,6 +115,7 @@ const description =
 
     <div class="flex flex-col gap-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Phone -->
         <div
           class="flex flex-col gap-3 p-6 bg-white/3 border border-white/4 rounded h-fit"
         >
@@ -115,6 +128,8 @@ const description =
             >
           </div>
         </div>
+
+        <!-- Email -->
         <div
           class="flex flex-col gap-3 p-6 bg-white/3 border border-white/4 rounded h-fit"
         >
@@ -129,15 +144,17 @@ const description =
           </div>
         </div>
       </div>
+
+      <!-- Address -->
       <div class="p-6 bg-white/3 border border-white/4 rounded">
         <div class="flex flex-col gap-6">
           <p class="font-semibold">Address</p>
           <div>
-            <p class="">Rua de São Sebastião da Pedreira 55 1D</p>
-            <p class="">1050-206 Lisboa</p>
+            <p>Rua de São Sebastião da Pedreira 55 1D</p>
+            <p>1050-206 Lisboa, Portugal</p>
           </div>
           <a
-            href="https://www.google.com/maps?q=1600+Amphitheatre+Parkway,+Mountain+View,+CA"
+            href="https://maps.app.goo.gl/2G4Hw8pz8oeeoBsdA"
             target="_blank"
             class="w-fit border-b py-1 hover:text-secondary transition"
           >
@@ -217,7 +234,7 @@ const description =
           })
           .then(function () {
             button.disabled = false;
-            spinner.classList.add("hidden")
+            spinner.classList.add("hidden");
             form.reset();
             form.classList.remove("was-validated");
             setTimeout(() => {
