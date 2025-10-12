@@ -6,6 +6,7 @@ import iconLamp from "../assets/icon-lamp.svg";
 import iconBrainGear from "../assets/icon-brain-gear.svg";
 import iconPhone from "../assets/icon-phone.svg";
 import iconGearGroup from "../assets/icon-gear-group.svg";
+import BackgroundCard from "./BackgroundCard.astro";
 
 const title = "How can we help";
 const description =
@@ -41,6 +42,8 @@ const cardItems = [
     alt: "Gear and users group icon",
   },
 ];
+
+import bgImg from "../assets/how-background.png"
 ---
 
 <Section id="how" bgColor="white" title={title} description={description}>
@@ -56,16 +59,10 @@ const cardItems = [
       ))
     }
   </div>
-  <div
-    class="bg-[url(../assets/how-background.png)] bg-cover bg-center text-xl sm:text-2xl rounded"
-  >
-    <div
-      class="px-6 py-12 md:py-24 text-white bg-primary/75 h-full backdrop-blur-xs grid grid-cols-1 md:grid-cols-2 items-center rounded"
-    >
-      <div>
-        ALIOW envisions a <span class="font-bold text-secondary">future</span> where businesses of all sizes easily leverage
-        low-code technology to drive <span class="font-bold text-secondary">innovation</span> and maintain a competitive edge.
-      </div>
-    </div>
-  </div>
+  <BackgroundCard bgImg={bgImg} alt="How background image">
+    ALIOW envisions a <span class="font-bold text-secondary">future</span> where
+    businesses of all sizes easily leverage low-code technology to drive <span
+      class="font-bold text-secondary">innovation</span
+    > and maintain a competitive edge.
+  </BackgroundCard>
 </Section>
