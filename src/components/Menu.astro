@@ -4,7 +4,7 @@ const isMobile = variant === "mobile";
 const menuItems = [
   { name: "How can we help", href: "#how" },
   { name: "Why us", href: "#why" },
-  { name: "Who we are", href: "#who" },
+  { name: "Our values", href: "#values" },
   { name: "Contact us", href: "#contact" },
 ];
 ---
@@ -12,7 +12,7 @@ const menuItems = [
 <ul
   class={isMobile
     ? "h-screen flex flex-col gap-y-12 items-center justify-center"
-    : "hidden md:flex gap-x-12"}
+    : "text-l hidden md:flex gap-x-12"}
 >
   {
     menuItems.map((item, index) => (
