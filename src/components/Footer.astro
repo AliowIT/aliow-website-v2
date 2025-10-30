@@ -1,46 +1,22 @@
 ---
-const currentYear = new Date().getFullYear();
+import IconButton from "./IconButton.astro";
+import IconX from "./icons/IconX.astro";
+import IconLinkedIn from "./icons/IconLinkedIn.astro";
+import Copyright from "./Copyright.astro";
 ---
 
-<footer class="px-6 sm:px-12 py-6 bg-primary text-white">
+<footer class="px-6 sm:px-12 py-6 text-white">
   <div
-    class="mx-auto flex flex-col sm:flex-row items-center sm:justify-between gap-6"
+    class="flex flex-col gap-y-6 items-center sm:flex-row sm:justify-between"
   >
-    <p>&copy; {currentYear} Aliow, Lda. All rights reserved.</p>
+    <Copyright />
     <div class="flex items-center gap-3">
-      <a
-        href="https://x.com/aliow_it"
-        target="_blank"
-        class="rounded-full bg-white/15 border border-white/10 p-3 fill-white hover:bg-white/75 hover:fill-primary active:scale-95 active:bg-white/40 transition"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill-rule="evenodd"
-            d="m13.458 9.122l7.516-7.965h2.491l-.01.011l-8.89 9.424l8.139 10.802a.906.906 0 0 1-.658 1.45H16.95a.9.9 0 0 1-.659-.359l-5.727-7.601l-7.472 7.96H.535l8.922-9.43L1.318 2.612a.906.906 0 0 1 .724-1.452h4.965c.285 0 .553.134.724.361zm-.763 2a1 1 0 0 1-.07-.093l-6.07-8.056H3.86l13.607 18.06h2.696z"
-            clip-rule="evenodd"
-          >
-          </path>
-        </svg>
-      </a>
-      <a
-        href="https://www.linkedin.com/company/Aliow"
-        target="_blank"
-        class="rounded-full bg-white/15 border border-white/10 p-3 fill-white hover:bg-white/75 hover:fill-primary active:scale-95 active:bg-white/40 transition"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          ><path
-            d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z"
-          ></path></svg
-        ></a
-      >
+      <IconButton href="https://x.com/aliow_it">
+        <IconX />
+      </IconButton>
+      <IconButton href="https://linkedin.com/company/aliow">
+        <IconLinkedIn />
+      </IconButton>
     </div>
   </div>
 </footer>
