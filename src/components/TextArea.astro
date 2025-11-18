@@ -1,0 +1,35 @@
+---
+const {
+  id,
+  label,
+  required = false,
+  maxlength = 2000,
+  rows = 5,
+  feedback = "",
+} = Astro.props;
+---
+
+<div class="flex flex-col gap-2">
+  <!-- Label -->
+  <label
+    for={id}
+    class="font-semibold"
+  >
+    {label}
+  </label>
+
+  <!-- Textarea -->
+  <textarea
+    id={id}
+    name={id}
+    required={required}
+    maxlength={maxlength}
+    rows={rows}
+    class="text-white bg-white/15 border border-white/10 p-2 rounded"
+  ></textarea>
+
+  <!-- Feedback message -->
+  <div class="empty-feedback invalid-feedback text-red-400 text-sm">
+    {feedback}
+  </div>
+</div>

@@ -2,169 +2,145 @@
 import { Image } from "astro:assets";
 import Section from "./Section.astro";
 import spinner from "../assets/infinite-spinner.svg";
+import Card from "./Card.astro";
+import Link from "./Link.astro";
+import Input from "./Input.astro";
+import TextArea from "./TextArea.astro";
+import Button from "./Button.astro";
 const title = "Get in touch";
 const description =
   "Are you looking for a partner or interested in knowing more? Contact us by sending a message or through the alternative contacts.";
 ---
 
-<Section id="contact" bgColor="primary" title={title} description={description}>
+<Section
+  id="contact"
+  primary
+  title={title}
+  description={description}
+>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-    <form
-      action="https://api.web3forms.com/submit"
-      method="POST"
-      id="form"
-      class="needs-validation flex flex-col gap-12 md:order-1 p-6 bg-white/3 border border-white/4 rounded"
-      data-astro-reload
-      novalidate
-    >
-      <!-- web3forms access key -->
-      <input
-        type="hidden"
-        name="access_key"
-        value="53b513f3-c293-46d7-85b2-847522ce33f3"
-      />
+    <!-- Contact form -->
+    <div class="md:order-1">
+      <Card>
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          id="form"
+          class="needs-validation flex flex-col gap-12"
+          data-astro-reload
+          novalidate
+        >
+          <!-- web3forms access key -->
+          <input
+            type="hidden"
+            name="access_key"
+            value="53b513f3-c293-46d7-85b2-847522ce33f3"
+          />
 
-      <input type="hidden" name="subject" value="Contact Form Request" />
-      <input type="hidden" name="from_name" value="Aliow" />
+          <input
+            type="hidden"
+            name="subject"
+            value="Contact Form Request"
+          />
+          <input
+            type="hidden"
+            name="from_name"
+            value="aliow"
+          />
 
-      <!-- Honeypot spam protection -->
-      <input
-        type="checkbox"
-        class="hidden"
-        style="display:none"
-        name="botcheck"
-      />
+          <!-- Honeypot spam protection -->
+          <input
+            type="checkbox"
+            class="hidden"
+            style="display:none"
+            name="botcheck"
+          />
 
-      <!-- Name input -->
-      <div class="flex flex-col gap-2">
-        <label for="name" class="font-semibold">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          autocomplete="name"
-          maxlength="100"
-          class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
-        />
-        <div class="empty-feedback invalid-feedback text-red-400 text-sm">
-          Please provide your name.
-        </div>
-      </div>
-
-      <!-- Email input -->
-      <div class="flex flex-col gap-2">
-        <label for="email" class="font-semibold">Email address</label>
-        <input
-          id="email"
-          type="email"
-          placeholder=""
-          name="email"
-          required
-          maxlength="100"
-          class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
-        />
-        <div class="empty-feedback text-red-400 text-sm">
-          Please provide your email address.
-        </div>
-        <div class="invalid-feedback text-red-400 text-sm">
-          Please provide a valid email address.
-        </div>
-      </div>
-
-      <!-- Message input -->
-      <div>
-        <div class="flex flex-col gap-2">
-          <label for="message" class="font-semibold">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
+          <!-- Name input -->
+          <Input
+            id="name"
+            label="Name"
+            type="text"
             required
-            maxlength="2000"
-            class="bg-white/15 text-white border border-white/10 px-2 py-2 rounded"
-          ></textarea>
-          <div class="empty-feedback invalid-feedback text-red-400 text-sm">
-            Please enter your message.
-          </div>
-        </div>
-      </div>
+            autocomplete="name"
+            feedback="Please enter your name."
+          />
 
-      <!-- Submit button -->
-      <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
-        <button
-          id="submit"
-          type="submit"
-          class="w-fit px-6 py-3 bg-secondary text-primary rounded font-semibold cursor-pointer select-none
-         hover:bg-secondary-400 active:scale-95 active:bg-secondary-500 transition transform"
-          style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;"
-          ontouchstart=""
-        >
-          <span class="flex gap-2"
-            ><Image
-              src={spinner}
-              width={30}
-              id="spinner"
-              class="hidden"
-              alt="Spinner indicator"
-            />Send message</span
-          >
-        </button>
+          <!-- Email input -->
+          <Input
+            id="email"
+            label="Email address"
+            type="email"
+            required
+            autocomplete="email"
+            feedback="Please enter a valid email address."
+          />
 
-        <!-- Feedback message -->
-        <div id="result"></div>
-      </div>
-    </form>
+          <!-- Message textarea -->
+          <TextArea
+            id="message"
+            label="Message"
+            required
+            feedback="Please enter your message."
+          />
 
-    <div class="flex flex-col gap-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Phone -->
-        <div
-          class="flex flex-col gap-3 p-6 bg-white/3 border border-white/4 rounded h-fit"
-        >
-          <p class="font-semibold">Phone</p>
-          <div class="flex gap-3">
-            <a
-              href="tel:937912271"
-              class="w-fit border-b py-1 hover:text-secondary transition"
-              >+351 937 912 271</a
+          <!-- Submit button -->
+          <div class="flex flex-col gap-6">
+            <Button
+              id="submit"
+              type="submit"
             >
+              <span class="flex gap-2">
+                <Image
+                  src={spinner}
+                  width={30}
+                  id="spinner"
+                  class="hidden"
+                  alt="Spinner indicator"
+                />
+                Send message
+              </span>
+            </Button>
+
+            <!-- Feedback message -->
+            <div id="result"></div>
           </div>
-        </div>
+        </form>
+      </Card>
+    </div>
+
+    <!-- Alternative contacts -->
+    <div class="flex flex-col gap-12">
+      <div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
+        <!-- Phone -->
+        <Card title="Phone">
+          <Link
+            label="+351 937 912 271"
+            href="tel:937912271"
+          />
+        </Card>
 
         <!-- Email -->
-        <div
-          class="flex flex-col gap-3 p-6 bg-white/3 border border-white/4 rounded h-fit"
-        >
-          <p class="font-semibold">Email</p>
-
-          <div class="flex gap-3">
-            <a
-              href="mailto:info@aliow.it"
-              class="w-fit border-b py-1 hover:text-secondary transition"
-              >info@aliow.it</a
-            >
-          </div>
-        </div>
+        <Card title="Email">
+          <Link
+            label="info@aliow.it"
+            href="mailto:info@aliow.it"
+          />
+        </Card>
       </div>
 
       <!-- Address -->
-      <div class="p-6 bg-white/3 border border-white/4 rounded">
-        <div class="flex flex-col gap-6">
-          <p class="font-semibold">Address</p>
-          <div>
-            <p>Rua São Sebastião da Pedreira 55 1º Dto</p>
-            <p>1050-206 Lisboa, Portugal</p>
-          </div>
-          <a
-            href="https://maps.app.goo.gl/298hApzNPyRPoPc5A"
-            target="_blank"
-            class="w-fit border-b py-1 hover:text-secondary transition"
-          >
-            Open in Google Maps
-          </a>
+      <Card title="Address">
+        <div>
+          <p>Rua São Sebastião da Pedreira 55 1º Dto</p>
+          <p>1050-206 Lisboa, Portugal</p>
         </div>
-      </div>
+        <Link
+          label="Open in Google Maps"
+          href="https://maps.app.goo.gl/298hApzNPyRPoPc5A"
+          target="_blank"
+        />
+      </Card>
     </div>
   </div>
 </Section>

@@ -1,0 +1,11 @@
+---
+const { label, href, target = "_self" } = Astro.props;
+---
+
+<a
+  href={href}
+  target={target}
+  class="w-fit border-b py-1 hover:text-secondary transition"
+>
+  {label}
+</a>

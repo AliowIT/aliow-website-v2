@@ -1,0 +1,14 @@
+---
+const { id, type } = Astro.props;
+---
+
+<button
+  id={id}
+  type={type}
+  class="w-fit px-6 py-3 bg-secondary text-primary rounded font-semibold cursor-pointer select-none
+         hover:bg-secondary-400 active:scale-95 active:bg-secondary-500 transition transform"
+  style="touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;"
+  ontouchstart=""
+>
+  <slot />
+</button>
