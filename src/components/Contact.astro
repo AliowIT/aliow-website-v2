@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import Section from "./Section.astro";
 import spinner from "../assets/infinite-spinner.svg";
-import Card from "./Card.astro";
+import BaseCard from "./BaseCard.astro";
 import Link from "./Link.astro";
 import Input from "./Input.astro";
 import TextArea from "./TextArea.astro";
@@ -21,7 +21,7 @@ const description =
   <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
     <!-- Contact form -->
     <div class="md:order-1">
-      <Card>
+      <BaseCard variant="glass" title="Send us a message">
         <form
           action="https://api.web3forms.com/submit"
           method="POST"
@@ -106,41 +106,37 @@ const description =
             <div id="result"></div>
           </div>
         </form>
-      </Card>
+      </BaseCard>
     </div>
 
     <!-- Alternative contacts -->
     <div class="flex flex-col gap-12">
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-12">
         <!-- Phone -->
-        <Card title="Phone">
-          <Link
-            label="+351 937 912 271"
-            href="tel:937912271"
-          />
-        </Card>
+        <BaseCard variant="glass" title="Phone">
+          <Link href="tel:937912271">+351 937 912 271</Link>
+        </BaseCard>
 
         <!-- Email -->
-        <Card title="Email">
-          <Link
-            label="info@aliow.it"
-            href="mailto:info@aliow.it"
-          />
-        </Card>
+        <BaseCard variant="glass" title="Email">
+          <Link href="mailto:info@aliow.it">info@aliow.it</Link>
+        </BaseCard>
       </div>
 
       <!-- Address -->
-      <Card title="Address">
+      <BaseCard variant="glass" title="Address">
         <div>
           <p>Rua São Sebastião da Pedreira 55 1º Dto</p>
           <p>1050-206 Lisboa, Portugal</p>
         </div>
         <Link
-          label="Open in Google Maps"
           href="https://maps.app.goo.gl/298hApzNPyRPoPc5A"
           target="_blank"
-        />
-      </Card>
+          class="mt-6"
+        >
+          Open in Google Maps
+        </Link>
+      </BaseCard>
     </div>
   </div>
 </Section>

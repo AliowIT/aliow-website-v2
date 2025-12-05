@@ -2,22 +2,28 @@
 const {
   id,
   label,
-  type,
+  type = "text",
   required = false,
   autocomplete = "",
   maxlength = 100,
   feedback = "",
+  class: extra = "",
+  ...rest
 } = Astro.props;
 ---
 
 <div class="flex flex-col gap-2">
   <!-- Label -->
-  <label
-    for={id}
-    class="font-semibold"
-  >
-    {label}
-  </label>
+  {
+    label && (
+      <label
+        for={id}
+        class="font-semibold"
+      >
+        {label}
+      </label>
+    )
+  }
 
   <!-- Input -->
   <input
@@ -27,11 +33,20 @@ const {
     required={required}
     autocomplete={autocomplete}
     maxlength={maxlength}
-    class="text-white bg-white/15 border border-white/10 p-2 rounded"
+    aria-describedby={feedback ? `${id}-feedback` : undefined}
+    class={`form-input ${extra}`}
+    {...rest}
   />
 
   <!-- Feedback message -->
-  <div class="empty-feedback invalid-feedback text-red-400 text-sm">
-    {feedback}
-  </div>
+  {
+    feedback && (
+      <div
+        id={`${id}-feedback`}
+        class="empty-feedback invalid-feedback text-red-400 text-sm"
+      >
+        {feedback}
+      </div>
+    )
+  }
 </div>

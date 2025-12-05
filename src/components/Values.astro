@@ -1,6 +1,6 @@
 ---
 import Section from "./Section.astro";
-import IconCard from "./IconCard.astro";
+import BaseCard from "./BaseCard.astro";
 
 import iconCourage from "../assets/icon-courage.svg";
 import iconIntegrity from "../assets/icon-integrity.svg";
@@ -43,29 +43,42 @@ const cardItems = [
 ];
 
 import bgImg from "../assets/values-background.png";
-import BackgroundCard from "./BackgroundCard.astro";
 ---
 
-<Section id="values" title={title} description={description}>
+<Section
+  id="values"
+  title={title}
+  description={description}
+>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
     {
       cardItems.map((item) => (
-        <IconCard
+        <BaseCard
           title={item.title}
           description={item.description}
           icon={item.icon}
-          alt={item.alt}
-          height={150}
+          iconAlt={item.alt}
+          iconHeight={150}
         />
       ))
     }
   </div>
-  <BackgroundCard bgImg={bgImg} alt="How background image">
-    aliow empowers clients through <span class="font-bold text-secondary"
-      >collaboration</span
-    >, enabling genuine and impactful innovation. By integrating cutting-edge
-    technology with deep industry expertise, we help <span
-      class="font-bold text-secondary">achieve</span
-    > digital goals with efficiency and precision.
-  </BackgroundCard>
+  <BaseCard
+    bgImg={bgImg}
+    variant="background"
+    bgImgAlt="Values background image"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 py-12 md:py-20 text-xl sm:text-2xl"
+    >
+      <div>
+        aliow empowers clients through <span class="font-bold text-secondary"
+          >collaboration</span
+        >, enabling genuine and impactful innovation. By integrating
+        cutting-edge technology with deep industry expertise, we help <span
+          class="font-bold text-secondary">achieve</span
+        > digital goals with efficiency and precision.
+      </div>
+    </div>
+  </BaseCard>
 </Section>

@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+
+const {
+  variant = "default", // default | glass
+  icon,
+  iconAlt = "",
+  iconHeight = 100,
+  bgImg,
+  bgImgAlt, 
+  title,
+  description,
+  class: extra = "",
+  ...rest
+} = Astro.props;
+const hasContent = Astro.slots.has('default');
+---
+
+<div
+  class={`card card-${variant} ${extra}`}
+  {...rest}
+>
+  <!-- Optional background image -->
+  {
+    bgImg && (
+      <Image
+        src={bgImg}
+        alt={bgImgAlt}
+        class="absolute inset-0 h-full w-full object-cover object-center rounded"
+      />
+      <div class="absolute bg-primary/75 backdrop-blur-xs inset-0 h-full w-full rounded"></div>
+    )
+  }
+
+  <!-- Optional icon -->
+  {
+    icon && (
+      <Image
+        src={icon}
+        alt={iconAlt}
+        height={iconHeight}
+      />
+    )
+  }
+
+  <!-- Optional title -->
+  {title && <h3 class="z-1 font-semibold text-xl sm:text-2xl">{title}</h3>}
+
+  <!-- Optional description -->
+  {description && <p class="z-1">{description}</p>}
+
+  { hasContent && (
+  <div class="z-1">
+    <slot />
+  </div>
+)}
+</div>

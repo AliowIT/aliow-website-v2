@@ -1,13 +1,19 @@
 ---
-import Hamburger from "./Hamburger.astro";
 import Menu from "./Menu.astro";
-import Close from "./Close.astro";
+import Icon from "./Icon.astro";
 ---
 
 <nav class="z-100">
   <!-- Desktop variant -->
   <div class="flex items-center">
-    <Hamburger />
+    <button
+      id="menu-toggle"
+      class="cursor-pointer md:hidden"
+      aria-label="Toggle menu"
+    >
+      <Icon name="hamburger" />
+    </button>
+
     <Menu variant="desktop" />
   </div>
   <!-- Mobile modal -->
@@ -17,7 +23,14 @@ import Close from "./Close.astro";
     aria-modal="true"
   >
     <div class="absolute right-0 top-0 flex items-center p-6">
-      <Close />
+      <button
+        id="menu-close"
+        class="cursor-pointer"
+        aria-label="Close menu"
+        tabindex="-1"
+      >
+        <Icon name="close" />
+      </button>
     </div>
     <Menu variant="mobile" />
   </div>

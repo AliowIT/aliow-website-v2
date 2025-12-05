@@ -1,0 +1,31 @@
+---
+const { name, class: extra = "", ...rest } = Astro.props;
+
+const icons = import.meta.glob("../icons/*.svg", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+});
+
+const iconMap: Record<string, string> = {};
+for (const path in icons) {
+  const key = path.split("/").pop()?.replace(".svg", "");
+  if (key) {
+    iconMap[key] = icons[path] as string;
+  }
+}
+
+const svg = iconMap[name];
+
+if (!svg) {
+  throw new Error(
+    `Icon "${name}" not found. Available icons: ${Object.keys(iconMap).join(", ")}`
+  );
+}
+---
+
+<astro-fragment
+  set:html={svg}
+  class={extra}
+  {...rest}
+/>

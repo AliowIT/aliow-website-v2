@@ -1,8 +1,7 @@
 ---
-import IconButton from "./IconButton.astro";
-import IconX from "./icons/IconX.astro";
-import IconLinkedIn from "./icons/IconLinkedIn.astro";
+import IconLink from "./IconLink.astro";
 import Copyright from "./Copyright.astro";
+import Icon from "./Icon.astro";
 ---
 
 <footer class="px-6 sm:px-12 py-6 text-white">
@@ -11,12 +10,12 @@ import Copyright from "./Copyright.astro";
   >
     <Copyright />
     <div class="flex items-center gap-3">
-      <IconButton href="https://x.com/aliow_it">
-        <IconX />
-      </IconButton>
-      <IconButton href="https://linkedin.com/company/aliow">
-        <IconLinkedIn />
-      </IconButton>
+      <IconLink href="https://x.com/aliow_it" target="_blank">
+        <Icon name="x" />
+      </IconLink>
+      <IconLink href="https://linkedin.com/company/aliow" target="_blank">
+        <Icon name="linkedin" />
+      </IconLink>
     </div>
   </div>
 </footer>

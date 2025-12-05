@@ -1,5 +1,6 @@
 ---
 import Section from "../components/Section.astro";
+import BaseCard from "./BaseCard.astro";
 const title = "Why us";
 const description =
   "Partnering with us means more than just a service, it’s a commitment to your success. We transform your ideas into reality through expert-driven solutions, cutting-edge technology, and strategic collaboration.";
@@ -23,22 +24,23 @@ const cardItems = [
 ];
 ---
 
-<Section id="why" primary title={title} description={description}>
+<Section
+  id="why"
+  primary
+  title={title}
+  description={description}
+>
   <div
-    class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-x md:divide-y-0 divide-secondary gap-12"
+    class="grid grid-cols-1 md:grid-cols-3 gap-12"
   >
     {
-      cardItems.map((item, index) => {
-        const isFirst = index === 0;
-        const isLast = index === cardItems.length - 1;
-
-        const paddingClass = isFirst ? "pb-12 md:pr-12 md:pb-0" : isLast ? "pt-12 md:pl-12 md:pt-0" : "py-12 md:px-12 md:py-0";
-
+      cardItems.map((item) => {
         return (
-          <div class={`flex flex-col gap-y-6 p-6 bg-white/3 border border-white/4 rounded`}>
-            <h3 class="font-semibold text-xl sm:text-2xl">{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
+          <BaseCard
+            variant="glass"
+            title={item.title}
+            description={item.description}
+          />
         );
       })
     }

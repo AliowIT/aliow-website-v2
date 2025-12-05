@@ -1,11 +1,20 @@
 ---
-const { label, href, target = "_self" } = Astro.props;
+const {
+  href,
+  target,
+  rel,
+  class: extra = "",
+  ...rest
+} = Astro.props;
 ---
 
 <a
   href={href}
   target={target}
-  class="w-fit border-b py-1 hover:text-secondary transition"
+  rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)}
+  class={`w-fit border-b py-1 hover:text-secondary transition inline-block ${extra}`}
+  ontouchstart=""
+  {...rest}
 >
-  {label}
+  <slot />
 </a>

@@ -3,7 +3,6 @@ const {
   href,
   target,
   rel,
-  variant = "secondary",
   class: extra = "",
   ...rest
 } = Astro.props;
@@ -13,9 +12,12 @@ const {
   href={href}
   target={target}
   rel={rel ?? (target === "_blank" ? "noopener noreferrer" : undefined)}
-  class={`btn btn-${variant} ${extra}`}
+  class={`p-3 border border-white/10 rounded-full bg-white/15 hover:bg-white/75 active:bg-white/40 fill-white hover:fill-primary active:scale-95 transition ${extra}`}
   ontouchstart=""
   {...rest}
 >
   <slot />
 </a>
+
+
+

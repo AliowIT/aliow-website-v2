@@ -1,12 +1,11 @@
 ---
 import Section from "../components/Section.astro";
-import IconCard from "./IconCard.astro";
+import BaseCard from "./BaseCard.astro";
 
 import iconLamp from "../assets/icon-lamp.svg";
 import iconBrainGear from "../assets/icon-brain-gear.svg";
 import iconPhone from "../assets/icon-phone.svg";
 import iconGearGroup from "../assets/icon-gear-group.svg";
-import BackgroundCard from "./BackgroundCard.astro";
 
 const title = "How can we help";
 const description =
@@ -43,26 +42,40 @@ const cardItems = [
   },
 ];
 
-import bgImg from "../assets/how-background.png"
+import bgImg from "../assets/how-background.png";
 ---
 
-<Section id="how" title={title} description={description}>
+<Section
+  id="how"
+  title={title}
+  description={description}
+>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
     {
       cardItems.map((item) => (
-        <IconCard
+        <BaseCard
           title={item.title}
           description={item.description}
           icon={item.icon}
-          alt={item.alt}
+          iconAlt={item.alt}
         />
       ))
     }
   </div>
-  <BackgroundCard bgImg={bgImg} alt="How background image">
-    aliow envisions a <span class="font-bold text-secondary">future</span> where
-    businesses of all sizes easily leverage low-code technology to drive <span
-      class="font-bold text-secondary">innovation</span
-    > and maintain a competitive edge.
-  </BackgroundCard>
+  <BaseCard
+    bgImg={bgImg}
+    variant="background"
+    bgImgAlt="Values background image"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 py-12 md:py-20 text-xl sm:text-2xl"
+    >
+      <div>
+        aliow envisions a <span class="font-bold text-secondary">future</span> where
+        businesses of all sizes easily leverage low-code technology to drive <span
+          class="font-bold text-secondary">innovation</span
+        > and maintain a competitive edge.
+      </div>
+    </div>
+  </BaseCard>
 </Section>
